@@ -1,8 +1,8 @@
 import React from 'react';
-import Circle from './circle';
+import Circle, { CircleProps } from './circle';
 
 interface CircleListProps {
-  circles: { x: number; y: number }[];
+  circles: CircleProps[];
 }
 
 const CircleList: React.FC<CircleListProps> = ({ circles }) => {
