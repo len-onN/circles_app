@@ -1,35 +1,47 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React, { useState, MouseEvent } from 'react';
+import CircleList from './circles';
+import UndoRedoButtons from './buttons';
 
-function App() {
-  const [count, setCount] = useState(0)
-
-  return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+interface Circle {
+  x: number;
+  y: number;
 }
 
-export default App
+const App: React.FC = () => {
+  const [circles, setCircles] = useState<Circle[]>([]);
+  const [undoStack, setUndoStack] = useState<Circle[]>([]);
+
+  const handleAddCircle = (e: MouseEvent<HTMLDivElement>) => {
+    const { clientX, clientY } = e;
+    const newCircle: Circle = { x: clientX, y: clientY };
+    setCircles([...circles, newCircle]);
+    setUndoStack([...undoStack, newCircle]);
+  };
+
+  const handleUndo = () => {
+    if (circles.length > 0) {
+      const lastCircle = circles[circles.length - 1];
+      setCircles(circles.slice(0, -1));
+      setUndoStack([...undoStack, lastCircle]);
+    }
+  };
+
+  const handleRedo = () => {
+    if (undoStack.length > 0) {
+      const lastUndo = undoStack[undoStack.length - 1];
+      setCircles([...circles, lastUndo]);
+      setUndoStack(undoStack.slice(0, -1));
+    }
+  };
+
+  return (
+    <div>
+      <div onClick={handleAddCircle} style={{ position: 'relative', height: '100vh', width: '100vw', border: '1px solid black' }}>
+        <CircleList circles={circles} />
+      </div>
+      <UndoRedoButtons onUndo={handleUndo} onRedo={handleRedo} undoDisabled={circles.length === 0} redoDisabled={undoStack.length === 0} />
+    </div>
+  );
+};
+
+export default App;
