@@ -1,5 +1,6 @@
 import React, { useState, MouseEvent } from 'react';
-import './App.css';
+import CircleList from './circles';
+import UndoRedoButtons from './buttons';
 
 interface Circle {
   x: number;
@@ -35,27 +36,10 @@ const App: React.FC = () => {
 
   return (
     <div>
-      <div
-        onClick={handleAddCircle}
-        style={{ position: 'relative', height: '400px', border: '1px solid black' }}
-      >
-        {circles.map((circle, index) => (
-          <div
-            key={index}
-            style={{
-              position: 'absolute',
-              width: '20px',
-              height: '20px',
-              borderRadius: '50%',
-              background: 'blue',
-              left: `${circle.x}px`,
-              top: `${circle.y}px`,
-            }}
-          ></div>
-        ))}
+      <div onClick={handleAddCircle} style={{ position: 'relative', height: '100vh', width: '100vw', border: '1px solid black' }}>
+        <CircleList circles={circles} />
       </div>
-      <button onClick={handleUndo}>Desfazer</button>
-      <button onClick={handleRedo}>Refazer</button>
+      <UndoRedoButtons onUndo={handleUndo} onRedo={handleRedo} undoDisabled={circles.length === 0} redoDisabled={undoStack.length === 0} />
     </div>
   );
 };
