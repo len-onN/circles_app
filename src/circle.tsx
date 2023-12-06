@@ -1,11 +1,11 @@
 import React from 'react';
 
-interface CircleProps {
+export interface CirclePosition {
   x: number;
   y: number;
 }
 
-const Circle: React.FC<CircleProps> = ({ x, y }) => {
+const Circle: React.FC<CirclePosition> = ({ x, y }) => {
   return (
     <div
       style={{

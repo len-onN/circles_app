@@ -1,11 +1,11 @@
 import React from 'react';
-import Circle from './circle';
+import Circle, { CirclePosition } from './circle';
 
-interface CircleListProps {
-  circles: { x: number; y: number }[];
+interface CirclePositionList {
+  circles: CirclePosition[];
 }
 
-const CircleList: React.FC<CircleListProps> = ({ circles }) => {
+const CircleList: React.FC<CirclePositionList> = ({ circles }) => {
   return (
     <div>
       {circles.map((circle, index) => (

@@ -2,16 +2,13 @@
 
 import React, { useState, MouseEvent, useRef } from 'react';
 import CircleList from './circles';
+import { CirclePosition } from './circle';
 import UndoRedoButtons from './buttons';
 
-interface Circle {
-  x: number;
-  y: number;
-}
 
 const App: React.FC = () => {
-  const [circles, setCircles] = useState<Circle[]>([]);
-  const [undoStack, setUndoStack] = useState<Circle[]>([]);
+  const [circles, setCircles] = useState<CirclePosition[]>([]);
+  const [undoStack, setUndoStack] = useState<CirclePosition[]>([]);
   const buttonContainerRef = useRef<HTMLDivElement>(null);
 
   const handleAddCircle = (e: MouseEvent<HTMLDivElement>) => {
@@ -21,7 +18,7 @@ const App: React.FC = () => {
     }
 
     const { clientX, clientY } = e;
-    const newCircle: Circle = { x: clientX, y: clientY };
+    const newCircle: CirclePosition = { x: clientX, y: clientY };
     setCircles([...circles, newCircle]);
     setUndoStack([...undoStack, newCircle]);
   };
