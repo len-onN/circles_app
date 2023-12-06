@@ -1,4 +1,6 @@
-import React, { useState, MouseEvent } from 'react';
+// App.tsx
+
+import React, { useState, MouseEvent, useRef } from 'react';
 import CircleList from './circles';
 import UndoRedoButtons from './buttons';
 
@@ -10,8 +12,14 @@ interface Circle {
 const App: React.FC = () => {
   const [circles, setCircles] = useState<Circle[]>([]);
   const [undoStack, setUndoStack] = useState<Circle[]>([]);
+  const buttonContainerRef = useRef<HTMLDivElement>(null);
 
   const handleAddCircle = (e: MouseEvent<HTMLDivElement>) => {
+    if (buttonContainerRef.current && buttonContainerRef.current.contains(e.target as Node)) {
+      // Mouse está sobre os botões, não faça nada
+      return;
+    }
+
     const { clientX, clientY } = e;
     const newCircle: Circle = { x: clientX, y: clientY };
     setCircles([...circles, newCircle]);
@@ -36,12 +44,18 @@ const App: React.FC = () => {
 
   return (
     <>
-    <UndoRedoButtons onUndo={handleUndo} onRedo={handleRedo} undoDisabled={circles.length === 0} redoDisabled={undoStack.length === 0} />
-    <div onClick={handleAddCircle} style={{ position: 'relative', height: '100vh', width: '100vw' }}>
-      <div>
-        <CircleList circles={circles} />
+      <div onClick={handleAddCircle} style={{ position: 'relative', height: '100vh', width: '100vw' }}>
+        <UndoRedoButtons
+          onUndo={handleUndo}
+          onRedo={handleRedo}
+          undoDisabled={circles.length === 0}
+          redoDisabled={undoStack.length === 0}
+          buttonContainerRef={buttonContainerRef}
+        />
+        <div>
+          <CircleList circles={circles} />
+        </div>
       </div>
-    </div>
     </>
   );
 };
