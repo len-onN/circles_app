@@ -9,7 +9,7 @@ interface UndoRedoButtonsProps {
 
 const UndoRedoButtons: React.FC<UndoRedoButtonsProps> = ({ onUndo, onRedo, undoDisabled, redoDisabled }) => {
   return (
-    <div style={{display: 'flex', flexDirection: 'row', position: 'relative', left: '32%'}}>
+    <div style={{position: 'relative', left: '32%'}}>
       <button style={{width: '200px'}} onClick={onUndo} disabled={undoDisabled}>
         Desfazer
       </button>

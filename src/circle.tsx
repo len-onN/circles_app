@@ -14,8 +14,8 @@ const Circle: React.FC<CircleProps> = ({ x, y }) => {
         height: '20px',
         borderRadius: '50%',
         background: 'blue',
-        left: `${x}px`,
-        top: `${y}px`,
+        left: `${x - 10}px`,
+        top: `${y - 10}px`,
       }}
     ></div>
   );
