@@ -9,7 +9,7 @@ const Circle: React.FC<CircleProps> = ({ x, y }) => {
   return (
     <div
       style={{
-        position: 'absolute',
+        position: 'fixed',
         width: '20px',
         height: '20px',
         borderRadius: '50%',

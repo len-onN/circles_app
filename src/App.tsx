@@ -35,12 +35,14 @@ const App: React.FC = () => {
   };
 
   return (
-    <div>
-      <div onClick={handleAddCircle} style={{ position: 'relative', height: '100vh', width: '100vw', border: '1px solid black' }}>
+    <>
+    <UndoRedoButtons onUndo={handleUndo} onRedo={handleRedo} undoDisabled={circles.length === 0} redoDisabled={undoStack.length === 0} />
+    <div onClick={handleAddCircle} style={{ position: 'relative', height: '100vh', width: '100vw' }}>
+      <div>
         <CircleList circles={circles} />
       </div>
-      <UndoRedoButtons onUndo={handleUndo} onRedo={handleRedo} undoDisabled={circles.length === 0} redoDisabled={undoStack.length === 0} />
     </div>
+    </>
   );
 };
 
