@@ -14,11 +14,11 @@ const UndoRedoButtons: React.FC<UndoRedoButtonsProps> = ({
   onUndo, onRedo, undoDisabled, redoDisabled, buttonContainerRef
 }) => {
   return (
-    <div ref={buttonContainerRef} style={{ position: 'fixed', display: 'inline' }}>
-      <button style={{ width: '200px' }} onClick={onUndo} disabled={undoDisabled}>
+    <div ref={buttonContainerRef} className='btns'>
+      <button className='btn' onClick={onUndo} disabled={undoDisabled}>
         Desfazer
       </button>
-      <button style={{ width: '200px' }} onClick={onRedo} disabled={redoDisabled}>
+      <button className='btn' onClick={onRedo} disabled={redoDisabled}>
         Refazer
       </button>
     </div>

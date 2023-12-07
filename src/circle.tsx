@@ -1,4 +1,5 @@
 import React from 'react';
+import './App.css';
 
 export interface CirclePosition {
   x: number;
@@ -8,12 +9,8 @@ export interface CirclePosition {
 const Circle: React.FC<CirclePosition> = ({ x, y }) => {
   return (
     <div
+      className='circle'
       style={{
-        position: 'fixed',
-        width: '20px',
-        height: '20px',
-        borderRadius: '50%',
-        background: 'blue',
         left: `${x - 10}px`,
         top: `${y - 10}px`,
       }}

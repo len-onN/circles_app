@@ -1,0 +1,27 @@
+.circle {
+    position: fixed;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: rgb(90, 90, 90);
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    height: 100vh;
+    width: 100vw;
+  }
+
+.btn {
+    color: white;
+    background-color: rgb(120, 120, 120);
+    width: 200px;
+}
+
+.btns {
+    position: fixed;
+    display: inline;
+}
+  
