@@ -41,7 +41,7 @@ const App: React.FC = () => {
 
   return (
     <>
-      <div onClick={handleAddCircle} style={{ position: 'relative', height: '100vh', width: '100vw' }}>
+      <div onClick={handleAddCircle} style={{ display: 'flex', justifyContent: 'center', position: 'relative', height: '100vh', width: '100vw' }}>
         <UndoRedoButtons
           onUndo={handleUndo}
           onRedo={handleRedo}
