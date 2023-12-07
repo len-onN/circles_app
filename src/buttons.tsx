@@ -10,7 +10,9 @@ interface UndoRedoButtonsProps {
   buttonContainerRef: RefObject<HTMLDivElement>;
 }
 
-const UndoRedoButtons: React.FC<UndoRedoButtonsProps> = ({ onUndo, onRedo, undoDisabled, redoDisabled, buttonContainerRef }) => {
+const UndoRedoButtons: React.FC<UndoRedoButtonsProps> = ({
+  onUndo, onRedo, undoDisabled, redoDisabled, buttonContainerRef
+}) => {
   return (
     <div ref={buttonContainerRef} style={{ position: 'fixed', display: 'inline' }}>
       <button style={{ width: '200px' }} onClick={onUndo} disabled={undoDisabled}>
